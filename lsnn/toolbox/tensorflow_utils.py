@@ -94,10 +94,13 @@ def tf_downsample(tensor,new_size,axis):
     with tf.name_scope('Downsample'):
         dims = len(tensor.get_shape())
 
+        # break into chunks of length 30 timesteps
         splitted = tf.split(tensor,num_or_size_splits=new_size,axis=axis)
         stacked = tf.stack(splitted,axis=dims)
+        # mean over 30-timestep-long chunks, giving 28 units of time
         reduced = tf.reduce_mean(stacked,axis=axis)
 
+        # transpose from batch_size x n_neurons x seq_len to batch_size x seq_len x n_neurons
         permutation = np.arange(dims-1)
         permutation = np.insert(permutation,axis,dims-1)
         transposed = tf.transpose(reduced,perm=permutation)
@@ -129,24 +132,25 @@ def tf_downsample_test():
 
 def tf_roll(buffer, new_last_element=None, axis=0):
     with tf.name_scope('roll'):
-        shp = buffer.get_shape()
-        l_shp = len(shp)
+        shp = buffer.get_shape() # batch x hidden_size x n_delay
+        l_shp = len(shp) # 3
 
         if shp[-1] == 0:
             return buffer
 
-        # Permute the index to roll over the right index
-        perm = np.concatenate([[axis],np.arange(axis),np.arange(start=axis+1,stop=l_shp)])
-        buffer = tf.transpose(buffer, perm=perm)
+        # Permute the index to roll over the right index (everything shifts towards the right)
+        perm = np.concatenate([[axis],np.arange(axis),np.arange(start=axis+1,stop=l_shp)]) # [2,0,1]
+        buffer = tf.transpose(buffer, perm=perm) # n_delay x batch x hidden_size
 
         # Add an element at the end of the buffer if requested, otherwise, add zero
         if new_last_element is None:
             shp = tf.shape(buffer)
-            new_last_element = tf.zeros(shape=shp[1:], dtype=buffer.dtype)
-        new_last_element = tf.expand_dims(new_last_element, axis=0)
+            new_last_element = tf.zeros(shape=shp[1:], dtype=buffer.dtype) # batch_size x hidden_size
+        new_last_element = tf.expand_dims(new_last_element, axis=0) # 1 x batch_size x hidden_size
+        # replace last element on delay axis with new_last_element (FIFO)
         new_buffer = tf.concat([buffer[1:], new_last_element], axis=0, name='rolled')
 
-        # Revert the index permutation
+        # Revert the index permutation : back to batch x hidden_size x n_delay
         inv_perm = np.argsort(perm)
         new_buffer = tf.transpose(new_buffer,perm=inv_perm)
 

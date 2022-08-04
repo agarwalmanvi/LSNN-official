@@ -1,0 +1,129 @@
+Output of model with extra stuff cut away and only the essentials for training a few iterations:
+
+#########################################################
+saving data to: ./results/tutorial_sequential_mnist_with_LSNN/2022_07_21__15_42__47_971841-684027
+#########################################################
+{
+    "logtostderr": false,
+    "alsologtostderr": false,
+    "log_dir": "",
+    "v": -1,
+    "verbosity": -1,
+    "logger_levels": {},
+    "stderrthreshold": "fatal",
+    "showprefixforinfo": true,
+    "run_with_pdb": false,
+    "pdb_post_mortem": false,
+    "pdb": false,
+    "run_with_profiling": false,
+    "profile_file": null,
+    "use_cprofile_for_profiling": true,
+    "only_check_args": false,
+    "op_conversion_fallback_to_while_loop": false,
+    "test_srcdir": "",
+    "test_tmpdir": "/tmp/absl_testing",
+    "test_random_seed": 301,
+    "test_randomize_ordering_seed": "",
+    "xml_output_file": "",
+    "comment": "",
+    "model": "LSNN",
+    "save_data": true,
+    "n_batch_train": 256,
+    "n_batch_validation": 256,
+    "n_in": 80,
+    "n_regular": 120,
+    "n_adaptive": 100,
+    "reg_rate": 10,
+    "n_iter": 400,
+    "n_delay": 10,
+    "n_ref": 5,
+    "lr_decay_every": 2500,
+    "print_every": 100,
+    "beta": 1.8,
+    "tau_a": 700.0,
+    "tau_v": 20.0,
+    "thr": 0.01,
+    "learning_rate": 0.01,
+    "reg": 0.1,
+    "verbose": true,
+    "crs_thr": true,
+    "dampening_factor": 0.3
+}
+
+Iteration:  0
+Iteration 0, epoch 0 validation accuracy 0.133
+
+            firing rate (Hz)  min 0 (1) 	 max 138 (1) 	 average 38 +- std 38 (over neurons)
+            connectivity (total 0.997)	 W_in 1 	 W_rec 1 		 w_out 1
+            number of non zero weights 	 W_in 17600/17600 	 W_rec 48180/48400 	 w_out 2200/2200
+
+            classification loss 2.3 	 regularization loss 0.049
+            learning rate 0.01 	 training op. time 0s
+
+Iteration:  10
+Iteration:  20
+Iteration:  30
+Iteration:  40
+Iteration:  50
+Iteration:  60
+Iteration:  70
+Iteration:  80
+Iteration:  90
+Iteration:  100
+Iteration 100, epoch 0 validation accuracy 0.418
+
+            firing rate (Hz)  min 0 (49) 	 max 121 (1) 	 average 11 +- std 16 (over neurons)
+            connectivity (total 0.997)	 W_in 1 	 W_rec 1 		 w_out 1
+            number of non zero weights 	 W_in 17600/17600 	 W_rec 48180/48400 	 w_out 2200/2200
+
+            classification loss 1.5 	 regularization loss 0.0056
+            learning rate 0.01 	 training op. time 4s
+
+Iteration:  110
+Iteration:  120
+Iteration:  130
+Iteration:  140
+Iteration:  150
+Iteration:  160
+Iteration:  170
+Iteration:  180
+Iteration:  190
+Iteration:  200
+Iteration 200, epoch 0 validation accuracy 0.512
+
+            firing rate (Hz)  min 0 (48) 	 max 116 (1) 	 average 12 +- std 17 (over neurons)
+            connectivity (total 0.997)	 W_in 1 	 W_rec 1 		 w_out 1
+            number of non zero weights 	 W_in 17600/17600 	 W_rec 48180/48400 	 w_out 2200/2200
+
+            classification loss 1.3 	 regularization loss 0.0065
+            learning rate 0.01 	 training op. time 4s
+
+Iteration:  210
+Iteration:  220
+Iteration:  230
+Iteration:  240
+Iteration:  250
+Iteration:  260
+Iteration:  270
+Iteration:  280
+Iteration:  290
+Iteration:  300
+Iteration 300, epoch 1 validation accuracy 0.637
+
+            firing rate (Hz)  min 0 (49) 	 max 116 (1) 	 average 12 +- std 20 (over neurons)
+            connectivity (total 0.997)	 W_in 1 	 W_rec 1 		 w_out 1
+            number of non zero weights 	 W_in 17600/17600 	 W_rec 48180/48400 	 w_out 2200/2200
+
+            classification loss 1 	 regularization loss 0.0085
+            learning rate 0.01 	 training op. time 4s
+
+Iteration:  310
+Iteration:  320
+Iteration:  330
+Iteration:  340
+Iteration:  350
+Iteration:  360
+Iteration:  370
+Iteration:  380
+Iteration:  390
+I am saving the graph now
